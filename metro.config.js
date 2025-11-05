@@ -1,9 +1,10 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig } = require('expo/metro-config');
 
-const config = {
-  server: {
-    port: 8082,
-  },
+const config = getDefaultConfig(__dirname);
+
+// Configurar puerto personalizado
+config.server = {
+  port: 8082,
 };
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+module.exports = config;
