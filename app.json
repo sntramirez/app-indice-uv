@@ -1,4 +1,37 @@
 {
-  "name": "UVRadiationViewer",
-  "displayName": "UV Radiation Viewer"
+  "expo": {
+    "name": "UV Radiation Viewer",
+    "slug": "uv-radiation-viewer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#6B49C8"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.uvradiationviewer",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Esta aplicación necesita acceso a tu ubicación para mostrar los datos de radiación UV de tu zona.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Esta aplicación necesita acceso a tu ubicación para mostrar los datos de radiación UV de tu zona."
+      }
+    },
+    "android": {
+      "package": "com.uvradiationviewer",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
 }

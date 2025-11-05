@@ -1,6 +1,6 @@
 # UV Radiation Viewer
 
-Una aplicación móvil de React Native para visualizar en tiempo real el índice de radiación UV basado en tu ubicación.
+Una aplicación móvil de React Native con Expo para visualizar en tiempo real el índice de radiación UV basado en tu ubicación.
 
 ## 📱 Características
 
@@ -12,19 +12,17 @@ Una aplicación móvil de React Native para visualizar en tiempo real el índice
 - **Información Adicional**: Muestra datos de ozono, UV máximo del día y hora pico
 - **Actualización Manual**: Pull-to-refresh para actualizar datos
 - **Interfaz Intuitiva**: Diseño limpio y fácil de usar
+- **Multiplataforma**: Funciona en Android, iOS y Web con Expo Go
 
 ## 🚀 Requisitos Previos
 
 - Node.js >= 18
 - npm o yarn
-- Para Android:
-  - Android Studio
-  - SDK de Android (mínimo API 21)
-  - Java Development Kit (JDK) 11 o superior
-- Para iOS:
-  - macOS
-  - Xcode 12 o superior
-  - CocoaPods
+- **Expo Go** instalado en tu dispositivo móvil:
+  - [Expo Go para Android](https://play.google.com/store/apps/details?id=host.exp.exponent) (Google Play Store)
+  - [Expo Go para iOS](https://apps.apple.com/app/expo-go/id982107779) (App Store)
+
+**No necesitas Android Studio, Xcode, ni configuración de entorno nativo. ¡Expo Go lo hace todo por ti!**
 
 ## 📦 Instalación
 
@@ -41,45 +39,43 @@ cd uv-radiation-viewer
 npm install
 ```
 
-### 3. Configuración específica de plataforma
+Eso es todo. No se requiere configuración adicional.
 
-#### Android
+## 🎯 Ejecución con Expo Go
 
-No se requiere configuración adicional. El proyecto está listo para ejecutarse.
+### Método 1: Escanear código QR (Recomendado)
 
-#### iOS
-
-Instalar pods de CocoaPods:
+1. **Iniciar el servidor de desarrollo:**
 
 ```bash
-cd ios
-pod install
-cd ..
+npm start
 ```
 
-## 🎯 Ejecución
+2. **Escanear el código QR:**
+   - **Android**: Abre la app Expo Go y escanea el código QR que aparece en la terminal o navegador
+   - **iOS**: Abre la cámara del iPhone y escanea el código QR, luego toca la notificación para abrir en Expo Go
 
-### Android
+3. ¡Listo! La app se cargará automáticamente en tu dispositivo
+
+### Método 2: Ejecutar directamente
 
 ```bash
-# Iniciar Metro bundler en puerto 8082
-npm start
-
-# En otra terminal, ejecutar en Android
+# Para Android
 npm run android
-```
 
-### iOS
-
-```bash
-# Iniciar Metro bundler en puerto 8082
-npm start
-
-# En otra terminal, ejecutar en iOS
+# Para iOS (solo en Mac)
 npm run ios
+
+# Para Web
+npm run web
 ```
 
-**Nota**: El Metro Bundler está configurado para usar el puerto **8082** en lugar del puerto predeterminado 8081.
+### Notas Importantes
+
+- **Puerto personalizado**: El servidor de desarrollo está configurado para usar el puerto **8082** en lugar del 8081
+- **Misma red WiFi**: Asegúrate de que tu computadora y dispositivo móvil estén en la misma red WiFi
+- **Permisos**: La app solicitará permisos de ubicación automáticamente al iniciar
+- **Hot Reload**: Los cambios en el código se reflejarán automáticamente en tu dispositivo
 
 ## 🔧 Configuración
 
@@ -162,34 +158,45 @@ La aplicación calcula tiempos de exposición segura para 6 tipos de piel:
 
 ## 🐛 Solución de Problemas
 
-### Error de permisos en Android
+### No puedo conectar con Expo Go
 
-Si obtienes errores de permisos en Android:
+**Problema**: No aparece el código QR o no puedo conectar desde mi dispositivo
+
+**Solución**:
+1. Asegúrate de que tu computadora y móvil están en la misma red WiFi
+2. Si usas VPN, desactívala temporalmente
+3. Reinicia el servidor: presiona `Ctrl+C` y ejecuta `npm start` de nuevo
+4. Intenta con el modo túnel: `npx expo start --tunnel`
+
+### Error de permisos de ubicación
+
+**Problema**: La app no puede obtener mi ubicación
+
+**Solución**:
+1. Asegúrate de haber dado permisos de ubicación a Expo Go en la configuración de tu dispositivo
+2. En Android: Ve a Ajustes → Aplicaciones → Expo Go → Permisos → Ubicación → Permitir
+3. En iOS: Ve a Ajustes → Expo Go → Ubicación → Mientras se usa la app
+
+### Limpiar caché de Expo
+
+Si tienes problemas con el bundler o la app no actualiza:
 
 ```bash
-cd android
-./gradlew clean
-cd ..
-npm run android
+npx expo start -c
 ```
 
-### Problemas con Metro Bundler
-
-Si el bundler no se inicia correctamente:
+O con npm:
 
 ```bash
-npm start -- --reset-cache
+npm start -- -c
 ```
 
-### Errores en iOS con CocoaPods
+### La app se cierra o crashea
 
-```bash
-cd ios
-pod deintegrate
-pod install
-cd ..
-npm run ios
-```
+1. Revisa la consola de Expo para ver errores
+2. Asegúrate de que todas las dependencias están instaladas: `npm install`
+3. Limpia el caché: `npx expo start -c`
+4. Actualiza Expo Go a la última versión en tu dispositivo
 
 ## 📱 Capturas de Pantalla
 
@@ -211,7 +218,10 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 🔗 Enlaces Útiles
 
+- [Expo Documentation](https://docs.expo.dev/)
 - [React Native Documentation](https://reactnative.dev/docs/getting-started)
+- [Expo Go App](https://expo.dev/client)
+- [expo-location Documentation](https://docs.expo.dev/versions/latest/sdk/location/)
 - [OpenUV API](https://www.openuv.io/)
 - [WHO UV Index Guide](https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-(uv)-index)
 
@@ -223,4 +233,5 @@ Tu Nombre - [@tu_twitter](https://twitter.com/tu_twitter)
 
 - Datos de UV proporcionados por OpenUV API
 - Iconos y emojis de Unicode
-- Comunidad de React Native
+- Expo team por simplificar el desarrollo móvil
+- Comunidad de React Native y Expo

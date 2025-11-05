@@ -1,16 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
-  StatusBar,
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
   RefreshControl,
   ScrollView,
-  Platform,
-  PermissionsAndroid,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import UVIndexDisplay from './src/components/UVIndexDisplay';
 import ExposureDetails from './src/components/ExposureDetails';
 import LoadingScreen from './src/components/LoadingScreen';
@@ -30,47 +28,13 @@ const App = () => {
   const [lastUpdate, setLastUpdate] = useState(null);
 
   /**
-   * Solicita permisos de ubicación en Android
-   */
-  const requestLocationPermission = async () => {
-    if (Platform.OS === 'android') {
-      try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          {
-            title: 'Permiso de Ubicación',
-            message:
-              'Esta aplicación necesita acceso a tu ubicación para mostrar datos de radiación UV.',
-            buttonNeutral: 'Preguntar después',
-            buttonNegative: 'Cancelar',
-            buttonPositive: 'OK',
-          }
-        );
-        return granted === PermissionsAndroid.RESULTS.GRANTED;
-      } catch (err) {
-        console.warn(err);
-        return false;
-      }
-    }
-    return true;
-  };
-
-  /**
    * Carga los datos de UV basados en la ubicación actual
    */
   const loadUVData = async () => {
     try {
       setError(null);
 
-      // Solicitar permisos de ubicación
-      const hasPermission = await requestLocationPermission();
-      if (!hasPermission) {
-        throw new Error(
-          'Se requieren permisos de ubicación para usar esta aplicación.'
-        );
-      }
-
-      // Obtener ubicación actual
+      // Obtener ubicación actual (expo-location maneja permisos automáticamente)
       const currentLocation = await getCurrentLocation();
       setLocation(currentLocation);
 
@@ -142,7 +106,7 @@ const App = () => {
   // Pantalla principal
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+      <StatusBar style="dark" />
 
       <ScrollView
         style={styles.scrollView}
