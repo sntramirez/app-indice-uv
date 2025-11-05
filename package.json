@@ -4,9 +4,9 @@
   "description": "Aplicación React Native para visualizar la radiación UV",
   "main": "index.js",
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
+    "android": "react-native run-android --port 8082",
+    "ios": "react-native run-ios --port 8082",
+    "start": "react-native start --port 8082",
     "test": "jest",
     "lint": "eslint ."
   },

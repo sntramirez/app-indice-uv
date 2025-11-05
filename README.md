@@ -62,7 +62,7 @@ cd ..
 ### Android
 
 ```bash
-# Iniciar Metro bundler
+# Iniciar Metro bundler en puerto 8082
 npm start
 
 # En otra terminal, ejecutar en Android
@@ -72,12 +72,14 @@ npm run android
 ### iOS
 
 ```bash
-# Iniciar Metro bundler
+# Iniciar Metro bundler en puerto 8082
 npm start
 
 # En otra terminal, ejecutar en iOS
 npm run ios
 ```
+
+**Nota**: El Metro Bundler está configurado para usar el puerto **8082** en lugar del puerto predeterminado 8081.
 
 ## 🔧 Configuración
 
