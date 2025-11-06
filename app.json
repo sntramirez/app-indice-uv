@@ -3,6 +3,7 @@
     "name": "UV Radiation Viewer",
     "slug": "uv-radiation-viewer",
     "version": "1.0.0",
+    "sdkVersion": "54.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "splash": {
